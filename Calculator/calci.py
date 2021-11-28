@@ -7,28 +7,32 @@ c=0
 #evaluating all kinds of operator and button and errors
 
 def evaluate(a):
-    global b,c
+    global b, c
+    digits=["0","1","2","3","4","5","6","7","8","9"]
     if a=='=':
-        l1['text']=b
+        # l1['text']=b
         try:
-            c=eval(b)
-            l1['text']=' '
-            label['text']=c
+            if list(b)[-1] in digits and list():
+
+                c=eval(b)
+            # l1['text']=' '
+                label['text'] = c
+            else:
+                label['text']=b
+
         except:
             label['text']="Infinity"
     elif a=='<-':
-        print("In the <- statement")
         d=label['text']
-        print("label text =",d)
         b=''
         if d==' ' or d=="Infinity":
             return evaluate("clear")
         else:
-            print("in else")
+            
             d = str(d)
             n = len(d)
             b+=d[0:n-1]
-            print(b)
+            
             label['text']=b
 
         
@@ -36,19 +40,35 @@ def evaluate(a):
     elif a=='clear':
         b=''
         label['text']=b
-        l1['text']=' '
+        # l1['text']=' '
     else:
-        try:
+        # try:
+        
+        n=len(b)
+        if n>0:
+            # print(type(list(b)[-1])==int)
+            # print(list(b)[-1])
+            # print(list(b)[-1] not in digits)
+            if list(b)[-1] not in digits:
+                if str(list(b)[-1])==str(a):
+                    label['text']=b
+                # else:    
+                #     b+=str(a)
+                #     label['text']=b
+            else:    
+                    b+=str(a)
+                    label['text']=b
+        else:    
             b+=str(a)
             label['text']=b
-        except:
-            pass
+        # except::
+        #     pass
         
 root=Tk()
-root.geometry("300x500")
+root.geometry("300x530")
 root.configure(background='orange')
-l1=Label(root,text='',bg='orange',fg='black',font='Arial 32 bold italic')
-l1.grid(row=0,column=3)
+# l1=Label(root,text='',bg='orange',fg='black',font='Arial 32 bold italic')
+# l1.grid(row=0,column=3)
 label=Label(root,text='',bg='orange',fg='black',font='Arial 32 bold italic')
 label.grid(row=0,columnspan=1,column=0)
 
