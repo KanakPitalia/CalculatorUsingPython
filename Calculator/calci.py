@@ -8,11 +8,13 @@ c=0
 
 def evaluate(a):
     global b, c
-    digits=["0","1","2","3","4","5","6","7","8","9"]
+    digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    n = len(b)
     if a=='=':
         # l1['text']=b
+        print(b,n,a)
         try:
-            if list(b)[-1] in digits and list():
+            if  n>0 and list(b)[-1] in digits :
 
                 c=eval(b)
             # l1['text']=' '
@@ -21,8 +23,9 @@ def evaluate(a):
                 label['text']=b
 
         except:
-            label['text']="Infinity"
-    elif a=='<-':
+            label['text']="∞"
+    elif a == '<-':
+        print(b,n,a)
         d=label['text']
         b=''
         if d==' ' or d=="Infinity":
@@ -37,24 +40,37 @@ def evaluate(a):
 
         
         
-    elif a=='clear':
+    elif a == 'clear':
+        print(b,n,a)
         b=''
         label['text']=b
         # l1['text']=' '
+    elif a == '.':
+        if list(b).count(a) > 0:
+            label['text'] = b
+        else:
+            b+= str(a)
+            label['text'] = b
+            
     else:
+        print(b,n,a)
         # try:
         
-        n=len(b)
+        
         if n>0:
             # print(type(list(b)[-1])==int)
             # print(list(b)[-1])
             # print(list(b)[-1] not in digits)
-            if list(b)[-1] not in digits:
+            if list(b)[-1] not in digits and str(a) not in digits:
                 if str(list(b)[-1])==str(a):
-                    label['text']=b
+                    label['text'] = b
+                # elif list(b)[-1] == "." and a in digits:
+                #     b+=str(a)
+                #     label['text']=b
                 # else:    
                 #     b+=str(a)
                 #     label['text']=b
+            
             else:    
                     b+=str(a)
                     label['text']=b
